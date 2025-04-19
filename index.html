@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>尺寸本本 – 快速查詢工具</title>
+  <title>尺寸本本</title>
   <style>
     body {
       font-family: "Noto Sans TC", sans-serif;
@@ -16,6 +16,23 @@
     h1 {
       text-align: center;
       color: #333;
+    }
+    #filter {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      margin: 0.25rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background-color: #007bff;
+      color: white;
     }
     #search {
       display: block;
@@ -36,9 +53,14 @@
       max-width: 600px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
+    .type {
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #999;
+    }
     .category {
       font-size: 0.9rem;
-      color: #777;
+      color: #555;
     }
     .item {
       font-size: 1.1rem;
@@ -52,122 +74,48 @@
 </head>
 <body>
   <h1>📏 尺寸本本</h1>
+
+  <div id="filter">
+    <button class="filter-btn active" onclick="filterType('全部')">全部</button>
+    <button class="filter-btn" onclick="filterType('住宅')">🏠 住宅</button>
+    <button class="filter-btn" onclick="filterType('商空')">🏢 商空</button>
+  </div>
+
   <input type="text" id="search" placeholder="輸入關鍵字，如『雙人床』『3坪』『電視尺寸』">
   <div id="results"></div>
+
   <script>
-const data = [
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "單人床",
-    "value": "90 x 188 cm",
-    "note": "適合單人使用或兒童床"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "雙人床",
-    "value": "150 x 188 cm",
-    "note": "常見於一般主臥與次臥"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "Queen Size 床",
-    "value": "180 x 188 cm",
-    "note": "中大型臥室使用，舒適空間"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "King Size 床",
-    "value": "180 x 210 cm",
-    "note": "需較大空間，常見於主臥"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "雙門衣櫃",
-    "value": "寬90–120 x 深60 x 高180–200 cm",
-    "note": "門片需預留開啟空間"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "書桌",
-    "value": "寬100–120 x 深50–60 cm，高度72–75 cm",
-    "note": "可搭配抽屜或收納櫃"
-  },
-  {
-    "type": "住宅",
-    "category": "浴室",
-    "item": "馬桶",
-    "value": "長70 x 寬38 cm",
-    "note": "前方至少預留70cm空間"
-  },
-  {
-    "type": "住宅",
-    "category": "浴室",
-    "item": "洗手台",
-    "value": "檯面高80–85 cm，深度50 cm",
-    "note": "高度可配合使用者身高調整"
-  },
-  {
-    "type": "住宅",
-    "category": "浴室",
-    "item": "淋浴間",
-    "value": "90 x 90 cm（最小建議80 x 80）",
-    "note": "建議搭配玻璃拉門或簾隔"
-  },
-  {
-    "type": "住宅",
-    "category": "客廳",
-    "item": "三人沙發",
-    "value": "長200–220 x 深90 cm",
-    "note": "建議沙發後方預留10–20cm"
-  },
-  {
-    "type": "住宅",
-    "category": "客廳",
-    "item": "單人沙發",
-    "value": "90 x 90 cm",
-    "note": "適合搭配茶几與腳凳"
-  },
-  {
-    "type": "住宅",
-    "category": "客廳",
-    "item": "電視櫃",
-    "value": "高40–55 cm，深35–45 cm",
-    "note": "搭配壁掛或直立電視"
-  },
-  {
-    "type": "住宅",
-    "category": "客廳",
-    "item": "55吋電視",
-    "value": "寬122 x 高69 cm，建議觀看距離2–2.5m",
-    "note": "適合中型客廳空間"
-  }
-];
+    const data = [
+      {{type: "住宅", category: "臥室", item: "單人床", value: "90 x 188 cm", note: "適合單人使用或兒童床"}},
+      {{type: "住宅", category: "臥室", item: "雙人床", value: "150 x 188 cm", note: "常見於一般主臥與次臥"}},
+      {{type: "住宅", category: "臥室", item: "Queen Size 床", value: "180 x 188 cm", note: "中大型臥室使用，舒適空間"}},
+      {{type: "住宅", category: "臥室", item: "King Size 床", value: "180 x 210 cm", note: "需較大空間，常見於主臥"}},
+      {{type: "商空", category: "常用尺寸", item: "坪 ↔ 平方公尺", value: "1坪 = 3.3058㎡，1㎡ ≒ 0.3025坪", note: "常用於室內面積估算"}},
+      {{type: "商空", category: "常用尺寸", item: "cm ↔ inch", value: "1 inch = 2.54 cm，1 cm = 0.3937 inch", note: "常見於家具與螢幕標示"}}
+    ];
+
     const results = document.getElementById("results");
     const searchInput = document.getElementById("search");
+    let activeType = "全部";
 
     function renderList(keyword = "") {
       results.innerHTML = "";
       const filtered = data.filter(d =>
-        d.item.includes(keyword) ||
-        d.value.includes(keyword) ||
-        d.note.includes(keyword)
+        (activeType === "全部" || d.type === activeType) &&
+        (d.item.includes(keyword) ||
+         d.value.includes(keyword) ||
+         d.note.includes(keyword) ||
+         d.category.includes(keyword))
       );
-
       if (filtered.length === 0) {
         results.innerHTML = '<p style="text-align:center; color:#999;">找不到符合的資料</p>';
         return;
       }
-
       filtered.forEach(d => {
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
+          <div class="type">${d.type}</div>
           <div class="category">${d.category}</div>
           <div class="item">${d.item}</div>
           <div class="value">📐 ${d.value}</div>
@@ -175,6 +123,14 @@ const data = [
         `;
         results.appendChild(card);
       });
+    }
+
+    function filterType(type) {
+      activeType = type;
+      document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+      const btn = Array.from(document.querySelectorAll(".filter-btn")).find(b => b.textContent.includes(type));
+      if (btn) btn.classList.add("active");
+      renderList(searchInput.value);
     }
 
     searchInput.addEventListener("input", e => {
