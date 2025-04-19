@@ -86,14 +86,49 @@
 
   <script>
     const data = [
-      {{type: "住宅", category: "臥室", item: "單人床", value: "90 x 188 cm", note: "適合單人使用或兒童床"}},
-      {{type: "住宅", category: "臥室", item: "雙人床", value: "150 x 188 cm", note: "常見於一般主臥與次臥"}},
-      {{type: "住宅", category: "臥室", item: "Queen Size 床", value: "180 x 188 cm", note: "中大型臥室使用，舒適空間"}},
-      {{type: "住宅", category: "臥室", item: "King Size 床", value: "180 x 210 cm", note: "需較大空間，常見於主臥"}},
-      {{type: "商空", category: "常用尺寸", item: "坪 ↔ 平方公尺", value: "1坪 = 3.3058㎡，1㎡ ≒ 0.3025坪", note: "常用於室內面積估算"}},
-      {{type: "商空", category: "常用尺寸", item: "cm ↔ inch", value: "1 inch = 2.54 cm，1 cm = 0.3937 inch", note: "常見於家具與螢幕標示"}}
-    ];
-
+  {
+    "type": "住宅",
+    "category": "臥室",
+    "item": "單人床",
+    "value": "90 x 188 cm",
+    "note": "適合單人使用或兒童床"
+  },
+  {
+    "type": "住宅",
+    "category": "臥室",
+    "item": "雙人床",
+    "value": "150 x 188 cm",
+    "note": "常見於一般主臥與次臥"
+  },
+  {
+    "type": "住宅",
+    "category": "臥室",
+    "item": "Queen Size 床",
+    "value": "180 x 188 cm",
+    "note": "中大型臥室使用，舒適空間"
+  },
+  {
+    "type": "住宅",
+    "category": "臥室",
+    "item": "King Size 床",
+    "value": "180 x 210 cm",
+    "note": "需較大空間，常見於主臥"
+  },
+  {
+    "type": "商空",
+    "category": "常用尺寸",
+    "item": "坪 ↔ 平方公尺",
+    "value": "1坪 = 3.3058㎡，1㎡ ≒ 0.3025坪",
+    "note": "常用於室內面積估算"
+  },
+  {
+    "type": "商空",
+    "category": "常用尺寸",
+    "item": "cm ↔ inch",
+    "value": "1 inch = 2.54 cm，1 cm = 0.3937 inch",
+    "note": "常見於家具與螢幕標示"
+  }
+];
     const results = document.getElementById("results");
     const searchInput = document.getElementById("search");
     let activeType = "全部";
