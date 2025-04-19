@@ -2,16 +2,14 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>尺寸本本</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>尺寸本本｜餐廳區測試版</title>
   <style>
     body {
       font-family: "Noto Sans TC", sans-serif;
       background-color: #f9f9f9;
-      margin: 0;
       padding: 2rem;
-      line-height: 1.6;
     }
     h1 {
       text-align: center;
@@ -19,7 +17,7 @@
     }
     #filter {
       text-align: center;
-      margin: 1rem 0;
+      margin-bottom: 1rem;
     }
     .filter-btn {
       padding: 0.5rem 1rem;
@@ -53,82 +51,22 @@
       max-width: 600px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-    .type {
-      font-size: 0.85rem;
-      font-weight: bold;
-      color: #999;
-    }
-    .category {
-      font-size: 0.9rem;
-      color: #555;
-    }
-    .item {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 0.3rem;
-    }
-    .value, .note {
-      font-size: 1rem;
-    }
+    .type { font-size: 0.85rem; color: #999; }
+    .category { font-size: 0.9rem; color: #555; }
+    .item { font-size: 1.1rem; font-weight: bold; }
+    .value, .note { font-size: 1rem; }
   </style>
 </head>
 <body>
-  <h1>📏 尺寸本本</h1>
-
+  <h1>📏 尺寸本本（餐廳區測試）</h1>
   <div id="filter">
     <button class="filter-btn active" onclick="filterType('全部')">全部</button>
     <button class="filter-btn" onclick="filterType('住宅')">🏠 住宅</button>
-    <button class="filter-btn" onclick="filterType('商空')">🏢 商空</button>
   </div>
-
-  <input type="text" id="search" placeholder="輸入關鍵字，如『雙人床』『3坪』『電視尺寸』">
+  <input type="text" id="search" placeholder="輸入關鍵字，如『餐桌』『杯具』『走道』">
   <div id="results"></div>
-
   <script>
-    const data = [
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "單人床",
-    "value": "90 x 188 cm",
-    "note": "適合單人使用或兒童床"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "雙人床",
-    "value": "150 x 188 cm",
-    "note": "常見於一般主臥與次臥"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "Queen Size 床",
-    "value": "180 x 188 cm",
-    "note": "中大型臥室使用，舒適空間"
-  },
-  {
-    "type": "住宅",
-    "category": "臥室",
-    "item": "King Size 床",
-    "value": "180 x 210 cm",
-    "note": "需較大空間，常見於主臥"
-  },
-  {
-    "type": "商空",
-    "category": "常用尺寸",
-    "item": "坪 ↔ 平方公尺",
-    "value": "1坪 = 3.3058㎡，1㎡ ≒ 0.3025坪",
-    "note": "常用於室內面積估算"
-  },
-  {
-    "type": "商空",
-    "category": "常用尺寸",
-    "item": "cm ↔ inch",
-    "value": "1 inch = 2.54 cm，1 cm = 0.3937 inch",
-    "note": "常見於家具與螢幕標示"
-  }
-];
+    const data = [{"type": "住宅", "category": "餐廳", "item": "人走動所需寬度", "value": "≥ 600 mm", "note": "多人共桌時建議保留動線空間"}, {"type": "住宅", "category": "餐廳", "item": "餐椅後退佔用深度", "value": "約 400 mm", "note": "須與牆或家具保持距離"}, {"type": "住宅", "category": "餐廳", "item": "4人餐桌標準尺寸", "value": "1500 × 850 mm", "note": "建議搭配椅子預留 900 mm 動線"}, {"type": "住宅", "category": "餐廳", "item": "地板座位使用空間", "value": "650~900 mm（寬）× 850~950 mm（深）", "note": "含膝部與桌面使用空間"}, {"type": "住宅", "category": "餐廳", "item": "吊燈距離桌面高度", "value": "1300~1400 mm", "note": "建議有燈罩避免眩光"}, {"type": "住宅", "category": "餐廳", "item": "調光開關位置", "value": "距地約 1200 mm", "note": "應安裝於進門動線可及處"}, {"type": "住宅", "category": "餐廳", "item": "餐具長度參考", "value": "筷子：220 mm、湯匙：160~200 mm", "note": "供抽屜與餐櫃規劃參考"}, {"type": "住宅", "category": "餐廳", "item": "餐盤尺寸", "value": "直徑 160~270 mm", "note": "常見於日式與西式餐盤設計"}, {"type": "住宅", "category": "餐廳", "item": "杯具高度", "value": "約 250~350 mm", "note": "包含水杯、酒杯等不同類型"}, {"type": "住宅", "category": "餐廳", "item": "餐櫃高度", "value": "約 720 mm（不含吊櫃）", "note": "常見底櫃尺寸，適合擺設常用品"}, {"type": "住宅", "category": "餐廳", "item": "餐邊櫃深度", "value": "400~450 mm", "note": "常見擺放於餐廳旁牆面"}];
     const results = document.getElementById("results");
     const searchInput = document.getElementById("search");
     let activeType = "全部";
@@ -137,10 +75,7 @@
       results.innerHTML = "";
       const filtered = data.filter(d =>
         (activeType === "全部" || d.type === activeType) &&
-        (d.item.includes(keyword) ||
-         d.value.includes(keyword) ||
-         d.note.includes(keyword) ||
-         d.category.includes(keyword))
+        (d.item.includes(keyword) || d.value.includes(keyword) || d.note.includes(keyword) || d.category.includes(keyword))
       );
       if (filtered.length === 0) {
         results.innerHTML = '<p style="text-align:center; color:#999;">找不到符合的資料</p>';
@@ -168,10 +103,7 @@
       renderList(searchInput.value);
     }
 
-    searchInput.addEventListener("input", e => {
-      renderList(e.target.value);
-    });
-
+    searchInput.addEventListener("input", e => renderList(e.target.value));
     renderList();
   </script>
 </body>
